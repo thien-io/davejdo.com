@@ -11,8 +11,8 @@ export const contact = [
   },
   {
     social: 'Github',
-    username: 'thien-io',
-    url: 'https://github.com/thien-io',
+    username: 'davejdo-io',
+    url: 'https://github.com/davejdo-io',
   },
   {
     social: 'Discord',
