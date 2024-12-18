@@ -1,13 +1,13 @@
 export const contact = [
   {
     social: 'Email',
-    username: 'hello@thientran.io',
-    url: 'mailto:hello@thientran.io',
+    username: 'hello@davejdo.io',
+    url: 'mailto:hello@davejdo.io',
   },
   {
     social: 'LinkedIn',
-    username: 'thienio',
-    url: 'https://linkedin.com/in/thienio',
+    username: 'davejdo',
+    url: 'https://linkedin.com/in/davejdo',
   },
   {
     social: 'Github',
@@ -16,17 +16,17 @@ export const contact = [
   },
   {
     social: 'Discord',
-    username: 'thien.io',
-    url: 'https://discordapp.com/users/thien.io',
+    username: 'davejdo',
+    url: 'https://discordapp.com/users/davejdo',
   },
   {
     social: 'Instagram',
-    username: 'thien.io',
-    url: 'https://instagram.com/thien.io',
+    username: 'davejdo',
+    url: 'https://instagram.com/davejdo',
   },
   {
     social: 'Telegram',
-    username: 'thien.io',
-    url: 'https://t.me/thien.io',
+    username: 'davejdo',
+    url: 'https://t.me/davejdo',
   },
 ];

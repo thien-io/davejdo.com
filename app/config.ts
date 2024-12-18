@@ -1,10 +1,10 @@
 export const metaData = {
-  baseUrl: "https://thientran.io/",
-  title: "Thien",
-  name: "Thien",
+  baseUrl: "https://davejdo.com/",
+  title: "Dave",
+  name: "David",
   ogImage: "/opengraph-image.png",
   description:
-    "tennis coach and web developer",
+    "student and designer",
 };
 
 export const socialLinks = {
@@ -13,33 +13,6 @@ export const socialLinks = {
   discord: "https://discord.gg/thien-io",
   instagram: "https://www.instagram.com/thien.io",
   linkedin: "https://www.linkedin.com/in/thienio/",
-  email: "mailto:hello@thientran.io",
+  email: "mailto:hello@davejdo.com",
 };
 
-
-export const config = {
-  github: {
-    user: {
-      endpoint: 'https://api.github.com/users/thienjs',
-    },
-    repo: {
-      endpoint: 'https://api.github.com/users/thienjs/repos',
-    },
-  },
-  game: {
-    discordId: '925868267690672208',
-    title: {
-      hearthstone: 'Hearthstone',
-    },
-  },
-  socket: {
-    type: {
-      init: 'INIT_STATE',
-      update: 'PRESENCE_UPDATE',
-    },
-  },
-}
-const dev = process.env.NODE_ENV !== 'production'
-export const basePath = dev
-  ? 'http://localhost:3000'
-  : process.env.PRODUCTION_URL

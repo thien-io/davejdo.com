@@ -5,7 +5,7 @@ import { AnimatedName } from '@/components/animated-name';
 
 export const metadata = {
   title: 'Blog',
-  description: "Thien's ",
+  description: "David's ",
 };
 
 export default function Blog() {

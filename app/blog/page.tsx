@@ -39,7 +39,7 @@ export default function BlogPosts() {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem className='block'>
-                <BreadcrumbLink href='/'>thien</BreadcrumbLink>
+                <BreadcrumbLink href='/'>david</BreadcrumbLink>
               </BreadcrumbItem>
 
               <BreadcrumbItem>
