@@ -35,7 +35,7 @@ export default function PhotosPage() {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem className='block'>
-                <BreadcrumbLink href='/'>thien</BreadcrumbLink>
+                <BreadcrumbLink href='/'>davejdo</BreadcrumbLink>
               </BreadcrumbItem>
 
               <BreadcrumbItem>

@@ -21,7 +21,7 @@ import {
 } from '@/components/ui/sidebar';
 export const metadata = {
   title: "Blog",
-  description: "Thien's ",
+  description: "davejdo's ",
 };
 
 
