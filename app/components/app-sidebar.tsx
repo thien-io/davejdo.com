@@ -129,7 +129,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <div className='ml-2 flex justify-between mb-3'>
           <ThemeSwitch />
           <p className='text-xs justify-center items-center content-center ml-2 mr-1'>
-            thien © {YEAR}
+            davejdo © {YEAR}
           </p>
         </div>
       </SidebarFooter>
