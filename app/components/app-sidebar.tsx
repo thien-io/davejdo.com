@@ -94,11 +94,7 @@ const data = {
       icon: IdCard,
     },
 
-    {
-      name: 'Blog',
-      url: '/blog',
-      icon: Feather,
-    },
+
     {
       name: 'Photos',
       url: '/photos',
