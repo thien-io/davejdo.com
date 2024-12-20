@@ -88,7 +88,7 @@ export default function Blog({ params }) {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem className='block'>
-                <BreadcrumbLink href='/'>thien</BreadcrumbLink>
+                <BreadcrumbLink href='/'>david</BreadcrumbLink>
               </BreadcrumbItem>
 
               <BreadcrumbItem>
