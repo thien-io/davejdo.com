@@ -53,6 +53,7 @@ import {
   Award,
   Quote,
   Music4,
+  Music2,
 } from 'lucide-react';
 import {
   Collapsible,
@@ -93,7 +94,11 @@ const data = {
       url: '/about',
       icon: IdCard,
     },
-
+    {
+      name: 'Music',
+      url: '/music',
+      icon: Music2,
+    },
 
     {
       name: 'Photos',
