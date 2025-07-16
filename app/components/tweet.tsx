@@ -37,7 +37,7 @@ export async function TweetComponent({ id }: { id: string }) {
       <div className={`flex justify-center`}>
         {/* <Suspense fallback={<TweetSkeleton />}> */}
         <ReactTweet id={id} />
-        {/* </Suspense> */}
+        {/* </Suspense> */}tweet
       </div>
     </div>
   );
