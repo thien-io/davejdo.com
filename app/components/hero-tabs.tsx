@@ -11,6 +11,7 @@ import {
 import About from './about';
 import Blog from './blog';
 import Photos from './photos';
+import Projects from './projects';
 import Contact from './contact';
 import { contact } from '@/data/contact';
 import { Input } from '@/components/ui/input';
@@ -53,7 +54,7 @@ export function HeroTabs() {
       <TabsList className='flex flex-col items-start mt-40 mb-20 bg-transparent -ml-4 '>
         <TabsTrigger value='about'>About</TabsTrigger>
 
-        <TabsTrigger value='photos'>Photos</TabsTrigger>
+        <TabsTrigger value='projects'>Projects</TabsTrigger>
         <TabsTrigger value='contact'>Contact</TabsTrigger>
       </TabsList>
       <TabsContent value='start'>
@@ -63,8 +64,8 @@ export function HeroTabs() {
         <About />
       </TabsContent>
 
-      <TabsContent value='photos'>
-        <Photos />
+      <TabsContent value='projects'>
+        <Projects />
       </TabsContent>
       <TabsContent value='contact'>
         <Contact />

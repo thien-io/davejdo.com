@@ -101,8 +101,8 @@ const data = {
     },
 
     {
-      name: 'Photos',
-      url: '/photos',
+      name: 'Projects',
+      url: '/projects',
       icon: Image,
     },
 
