@@ -1,11 +1,9 @@
-
 import { getTopTracks } from '@/lib/spotify';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
     const response = await getTopTracks();
-    
     const { items } = response;
 
     const tracks = items.slice(0, 10).map((track: any) => ({
