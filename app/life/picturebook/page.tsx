@@ -16,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 // Or use: https://drive.google.com/uc?export=view&id=<FILE_ID>
 // ─────────────────────────────────────────────────────
 const photos = [
-  { id: 1, src: "https://picsum.photos/seed/photo1/800/600", alt: "Memory 01", caption: "Golden hour", location: "Somewhere nice", size: "large" },
+  { id: 1, src: "https://drive.google.com/uc?export=view&id=1zPqNzyhnWzF3qY4vmvoXQmaFdMjC0CKa", alt: "Memory 01", caption: "Golden hour", location: "Somewhere nice", size: "large" },
   { id: 2, src: "https://picsum.photos/seed/photo2/600/800", alt: "Memory 02", caption: "City lights", location: "Downtown", size: "tall" },
   { id: 3, src: "https://picsum.photos/seed/photo3/600/600", alt: "Memory 03", caption: "Still life", location: "Home", size: "small" },
   { id: 4, src: "https://picsum.photos/seed/photo4/600/600", alt: "Memory 04", caption: "Morning fog", location: "Riverside", size: "small" },
