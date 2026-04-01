@@ -1,38 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  async rewrites() {
-    return [
-      {
-        source: "/rss.xml",
-        destination: "/feed/rss.xml",
-      },
-      {
-        source: "/atom.xml",
-        destination: "/feed/atom.xml",
-      },
-      {
-        source: "/feed.json",
-        destination: "/feed/feed.json",
-      },
-      {
-        source: "/rss",
-        destination: "/feed/rss.xml",
-      },
-      {
-        source: "/feed",
-        destination: "/feed/rss.xml",
-      },
-      {
-        source: "/atom",
-        destination: "/feed/atom.xml",
-      },
-      {
-        source: "/json",
-        destination: "/feed/feed.json",
-      },
-    ];
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "image.tmdb.org" },
+      { protocol: "https", hostname: "i.scdn.co" },
+      { protocol: "https", hostname: "mosaic.scdn.co" },
+      { protocol: "https", hostname: "via.placeholder.com" },
+      { protocol: "https", hostname: "picsum.photos" },
+      { protocol: "https", hostname: "lh3.googleusercontent.com" },
+      { protocol: "https", hostname: "drive.google.com" },
+    ],
   },
 };
 
