@@ -43,7 +43,8 @@ const config: Config = {
           white: "#ffffff",
           dark: "#23272a",
           darker: "#2c2f33",
-          muted: "#99aab5",
+          muted: "#D4AF37",
+          gold: "#D4AF37",
         },
       },
       fontFamily: {

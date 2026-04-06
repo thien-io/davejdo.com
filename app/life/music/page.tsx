@@ -348,15 +348,8 @@ export default function MusicPage() {
             </div>
           )}
         </div>
-      </section>
+                <div className="max-w-7xl mx-auto">
 
-      {/* Top 51–100 */}
-      <section className="py-6 px-4 md:px-10 pb-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-baseline justify-between mb-6 px-2">
-            <h2 className="font-display text-4xl">NEXT 50</h2>
-            <p className="text-xs font-mono text-muted-foreground">#51 – #100</p>
-          </div>
           {loading ? (
             <div className="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-2">
               {Array.from({ length: 50 }).map((_, i) => (
@@ -378,6 +371,10 @@ export default function MusicPage() {
           )}
         </div>
       </section>
+
+
+
+
 
       {/* Track detail drawer */}
       <AnimatePresence>

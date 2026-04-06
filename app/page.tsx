@@ -156,12 +156,10 @@ export default function HomePage() {
             </div>
           </div>
           <div className="overflow-hidden mb-8">
-            <div className="font-display text-[12vw] md:text-[10vw] leading-none tracking-wide text-brand-muted">
-              {"JDO".split("").map((char, i) => (
-                <span key={i} className="hero-char inline-block">
-                  {char}
-                </span>
-              ))}
+            <div className="font-display text-[12vw] md:text-[10vw] leading-none tracking-wide">
+              <span className="hero-char inline-block">J</span>
+              <span className="hero-char inline-block text-brand-gold">D</span>
+              <span className="hero-char inline-block text-brand-gold">O</span>
             </div>
           </div>
 

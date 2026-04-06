@@ -17,6 +17,8 @@ import {
   Menu,
   X,
   ExternalLink,
+  Twitter,
+  Linkedin,
 } from "lucide-react";
 
 const navItems = [
@@ -56,10 +58,10 @@ export function Sidebar() {
             className="flex items-baseline gap-1"
           >
             <span className="font-display text-4xl tracking-wider text-foreground">
-              DAVE
+              DAVEJ
             </span>
-            <span className="font-display text-4xl tracking-wider text-brand-muted">
-              JDO
+            <span className="font-display text-4xl tracking-wider text-brand-gold">
+              DO
             </span>
           </motion.div>
           <p className="text-xs font-mono text-muted-foreground mt-0.5 tracking-widest uppercase">
@@ -159,18 +161,23 @@ export function Sidebar() {
         )}
 
         {/* Social Links */}
-        <div className="flex items-center gap-2 px-3 pt-2 border-t border-border">
-          {["twitter", "github", "instagram"].map((social) => (
-            <a
-              key={social}
-              href={`https://${social}.com/davejdo`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[10px] font-mono tracking-wider text-muted-foreground hover:text-foreground transition-colors uppercase"
-            >
-              {social.slice(0, 2).toUpperCase()}
-            </a>
-          ))}
+        <div className="flex items-center gap-3 px-3 pt-2 border-t border-border">
+          <a
+            href="https://x.com/davdjdo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Twitter size={13} />
+          </a>
+          <a
+            href="https://linkedin.com/in/davidjdo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Linkedin size={13} />
+          </a>
           <div className="flex-1" />
           <ExternalLink size={10} className="text-muted-foreground" />
         </div>

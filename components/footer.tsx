@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Twitter, Github, Instagram, Linkedin } from "lucide-react";
+import { Mail, Twitter, Linkedin, MessageCircle, DollarSign } from "lucide-react";
 
 const contacts = [
-  { label: "Email", href: "mailto:dave@davejdo.com", icon: Mail, handle: "dave@davejdo.com" },
-  { label: "Twitter", href: "https://twitter.com/davejdo", icon: Twitter, handle: "@davejdo" },
-  { label: "GitHub", href: "https://github.com/davejdo", icon: Github, handle: "davejdo" },
-  { label: "Instagram", href: "https://instagram.com/davejdo", icon: Instagram, handle: "@davejdo" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/davejdo", icon: Linkedin, handle: "davejdo" },
+  { label: "Email", href: "mailto:davejdo6@gmail.com", icon: Mail, handle: "davejdo6@gmail.com" },
+  { label: "X", href: "https://x.com/davdjdo", icon: Twitter, handle: "@davdjdo" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/davidjdo", icon: Linkedin, handle: "davidjdo" },
+  { label: "Discord", href: "https://discord.com/users/davejdo", icon: MessageCircle, handle: "davejdo" },
+  { label: "Venmo", href: "https://venmo.com/davidjdo", icon: DollarSign, handle: "@davidjdo" },
 ];
 
 export function Footer() {
@@ -65,9 +65,9 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className='flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-8 border-t border-border'>
-          <div className='flex items-baseline gap-1'>
-            <span className='font-display text-2xl text-foreground'>DAVE</span>
-            <span className='font-display text-2xl text-brand-muted'>JDO</span>
+          <div className='flex items-baseline gap-0'>
+            <span className='font-display text-2xl text-foreground'>DAVEJ</span>
+            <span className='font-display text-2xl text-brand-gold'>DO</span>
           </div>
           <p className='text-xs font-mono text-muted-foreground'>
             © {new Date().getFullYear()} davejdo.com — Built by Thien
