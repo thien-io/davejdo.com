@@ -266,7 +266,7 @@ export default function PicturebookPage() {
               >
                 <Image
                   src={photo.src}
-                  alt={photo.alt}
+                  alt={photo.alt ?? photo.caption ?? "Photo"}
                   fill
                   className='object-cover transition-transform duration-500 group-hover:scale-105'
                   sizes='(max-width: 768px) 50vw, 25vw'
@@ -308,7 +308,7 @@ export default function PicturebookPage() {
             <div className='relative w-full h-[75vh] rounded-2xl overflow-hidden'>
               <Image
                 src={selected.src}
-                alt={selected.alt}
+                alt={selected.alt ?? selected.caption ?? "Photo"}
                 fill
                 className='object-contain'
                 sizes='90vw'

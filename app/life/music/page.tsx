@@ -325,8 +325,8 @@ export default function MusicPage() {
       <section className="py-12 px-4 md:px-10">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-baseline justify-between mb-6 px-2">
-            <h2 className="font-display text-4xl">TOP 50</h2>
-            <p className="text-xs font-mono text-muted-foreground">#1 – #50</p>
+            <h2 className="font-display text-4xl">TOP 100</h2>
+            <p className="text-xs font-mono text-muted-foreground">ALL-TIME</p>
           </div>
           {loading ? (
             <div className="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-2">
