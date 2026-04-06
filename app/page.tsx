@@ -24,7 +24,7 @@ const featured = [
     href: "/life/films",
     icon: Film,
     desc: "A curated diary of cinema.",
-    tag: "Letterboxd style",
+    tag: "Movies",
     color: "from-zinc-400/20 to-zinc-600/10",
   },
   {
