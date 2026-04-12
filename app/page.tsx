@@ -165,8 +165,8 @@ export default function HomePage() {
 
           {/* Subtitle */}
           <p className="hero-sub text-muted-foreground text-lg md:text-xl max-w-md leading-relaxed mb-10">
-            Designer, developer & creator. Building things that matter and
-            capturing life along the way.
+            Designer and creator. Building things that matter and capturing life
+            along the way.
           </p>
 
           {/* CTAs */}

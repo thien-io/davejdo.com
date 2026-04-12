@@ -10,17 +10,9 @@ import { Footer } from "@/components/footer";
 gsap.registerPlugin(ScrollTrigger);
 
 const skills = [
-  "Next.js", "TypeScript", "React", "Node.js", "Tailwind CSS",
-  "Figma", "Framer", "GSAP", "PostgreSQL", "Vercel",
-  "Python", "GraphQL", "Docker", "AWS", "Prisma",
+  "Photoshop", "Premiere Pro", "Illustrator", "InDesign", "After Effects", "Final Cut Pro",
 ];
 
-const timeline = [
-  { year: "2024", title: "Senior Developer", place: "TechCorp", desc: "Leading frontend architecture for enterprise SaaS platform." },
-  { year: "2023", title: "Full Stack Engineer", place: "StartupXYZ", desc: "Built and shipped core product features from ground up." },
-  { year: "2022", title: "UI Engineer", place: "Agency Co.", desc: "Crafted interfaces for clients across fintech and health." },
-  { year: "2020", title: "Started Coding", place: "Self-taught", desc: "Fell in love with building things on the internet." },
-];
 
 export default function AboutPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -140,44 +132,6 @@ export default function AboutPage() {
               >
                 {skill}
               </motion.span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section className='py-20 px-6 md:px-16 border-t border-border'>
-        <div className='max-w-4xl mx-auto'>
-          <div className='about-reveal mb-12'>
-            <p className='text-[10px] font-mono tracking-[0.2em] uppercase text-muted-foreground mb-3'>
-              Journey
-            </p>
-            <h2 className='font-display text-5xl'>EXPERIENCE</h2>
-          </div>
-          <div className='space-y-0'>
-            {timeline.map((item, i) => (
-              <div
-                key={i}
-                className='about-reveal group flex gap-8 py-8 border-b border-border last:border-0'
-              >
-                <div className='flex-shrink-0 w-16 text-right'>
-                  <span className='font-mono text-sm text-muted-foreground'>
-                    {item.year}
-                  </span>
-                </div>
-                <div className='w-px bg-border relative flex-shrink-0'>
-                  <div className='absolute top-1.5 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-border group-hover:bg-foreground transition-colors' />
-                </div>
-                <div className='flex-1 pb-2'>
-                  <div className='flex items-baseline gap-3 mb-2'>
-                    <h3 className='font-display text-2xl'>{item.title}</h3>
-                    <span className='text-sm text-muted-foreground'>
-                      @ {item.place}
-                    </span>
-                  </div>
-                  <p className='text-muted-foreground text-sm'>{item.desc}</p>
-                </div>
-              </div>
             ))}
           </div>
         </div>
