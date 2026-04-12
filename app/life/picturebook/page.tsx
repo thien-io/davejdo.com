@@ -43,7 +43,7 @@ const photos = [
   },
   {
     id: 4,
-    src: 'https://drive.google.com/uc?export=view&id=1pGoZlLTUWI0QgDt7aOLiyKCzpcqZlUY',
+    src: 'https://drive.google.com/uc?export=view&id=1pGoZlLTUWI0QgDt7aOLiyKCzpcqZlUY1',
     alt: 'Memory 04',
     caption: 'World Trade Center',
     location: 'Lower Manhattan',

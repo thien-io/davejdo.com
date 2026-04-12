@@ -16,9 +16,6 @@ import {
   Moon,
   Menu,
   X,
-  ExternalLink,
-  Twitter,
-  Linkedin,
 } from "lucide-react";
 
 const navItems = [
@@ -161,25 +158,31 @@ export function Sidebar() {
         )}
 
         {/* Social Links */}
-        <div className="flex items-center gap-3 px-3 pt-2 border-t border-border">
+        <div className="flex items-center gap-4 px-3 pt-2 border-t border-border">
+          <a
+            href="https://instagram.com/davejdo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-mono text-muted-foreground hover:text-foreground transition-colors tracking-wider"
+          >
+            IN
+          </a>
           <a
             href="https://x.com/davdjdo"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-xs font-mono text-muted-foreground hover:text-foreground transition-colors tracking-wider"
           >
-            <Twitter size={13} />
+            X
           </a>
           <a
-            href="https://linkedin.com/in/davidjdo"
+            href="https://discord.com/users/davejdo"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-xs font-mono text-muted-foreground hover:text-foreground transition-colors tracking-wider"
           >
-            <Linkedin size={13} />
+            DC
           </a>
-          <div className="flex-1" />
-          <ExternalLink size={10} className="text-muted-foreground" />
         </div>
       </div>
     </div>

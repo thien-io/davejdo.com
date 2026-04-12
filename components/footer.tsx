@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Twitter, Linkedin, MessageCircle, DollarSign } from "lucide-react";
+import { Mail, Twitter, Linkedin, MessageCircle, DollarSign, Instagram } from "lucide-react";
 
 const contacts = [
   { label: "Email", href: "mailto:davejdo6@gmail.com", icon: Mail, handle: "davejdo6@gmail.com" },
+  { label: "Instagram", href: "https://instagram.com/davejdo", icon: Instagram, handle: "@davejdo" },
   { label: "X", href: "https://x.com/davdjdo", icon: Twitter, handle: "@davdjdo" },
   { label: "LinkedIn", href: "https://linkedin.com/in/davidjdo", icon: Linkedin, handle: "davidjdo" },
   { label: "Discord", href: "https://discord.com/users/davejdo", icon: MessageCircle, handle: "davejdo" },
