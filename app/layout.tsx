@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { Toaster } from "sonner";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Sidebar } from "@/components/sidebar";
+import { TopBar } from "@/components/nav/TopBar";
 import { CursorGlow } from "@/components/cursor-glow";
 
 export const metadata: Metadata = {
   title: "davejdo",
-  description: "Personal website of davejdo",
+  description: "Personal website of Dave J Do — designer and creator in Connecticut",
   icons: {
     icon: [
       { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
@@ -19,26 +19,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased grain-overlay">
-        <Toaster position="bottom-right" richColors closeButton theme="dark" />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster position="bottom-right" richColors closeButton theme="dark" />
           <CursorGlow />
-          <div className="flex min-h-screen">
-            <Sidebar />
-            <main className="flex-1 ml-0 md:ml-64 transition-all duration-300">
-              {children}
-            </main>
-          </div>
+          <TopBar />
+          <main className="min-h-screen">{children}</main>
         </ThemeProvider>
       </body>
     </html>
