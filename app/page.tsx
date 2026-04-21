@@ -7,6 +7,7 @@ import { MediaImage } from "@/components/media/MediaImage";
 import { Footer } from "@/components/footer";
 import { createClient } from "@/lib/supabase/server";
 import { getSiteSettings } from "@/lib/supabase/queries/settings";
+import { getPageDescription } from "@/lib/supabase/queries/pageContent";
 
 const featured = [
   {
@@ -37,7 +38,10 @@ const featured = [
 
 export default async function HomePage() {
   const supabase = await createClient();
-  const settings = await getSiteSettings(supabase);
+  const [settings, description] = await Promise.all([
+    getSiteSettings(supabase),
+    getPageDescription(supabase, "home"),
+  ]);
   const heroImage =
     settings.hero_media?.storage_path || settings.hero_media?.external_url
       ? settings.hero_media
@@ -98,8 +102,8 @@ export default async function HomePage() {
               J DO
             </HeroName>
             <Reveal y={20} delay={1.1}>
-              <p className="text-muted-foreground max-w-md leading-relaxed text-base md:text-lg mt-6">
-                Designer and creator. Building things that matter and capturing life along the way.
+              <p className="text-muted-foreground max-w-md leading-relaxed text-base md:text-lg mt-6 whitespace-pre-line">
+                {description}
               </p>
             </Reveal>
           </div>

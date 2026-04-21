@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { getPageDescription } from "@/lib/supabase/queries/pageContent";
 import { PicturebookGrid } from "./PicturebookGrid";
 import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal/Reveal";
@@ -13,6 +14,7 @@ export default async function PicturebookPage({
   const { tag, page } = await searchParams;
   const pageNum = Math.max(0, Number(page ?? 0));
   const supabase = await createClient();
+  const description = await getPageDescription(supabase, "picturebook");
 
   const { data: photosRaw } = tag
     ? await supabase
@@ -59,8 +61,8 @@ export default async function PicturebookPage({
             <h1 className="font-display text-[clamp(4rem,10vw,9rem)] leading-[0.85]">
               PICTUREBOOK
             </h1>
-            <p className="text-muted-foreground max-w-md mt-6">
-              Moments captured in light and shadow. Filter by tag, or let the scroll lead.
+            <p className="text-muted-foreground max-w-md mt-6 whitespace-pre-line">
+              {description}
             </p>
           </Reveal>
         </div>

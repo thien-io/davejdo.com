@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { getPageDescription } from "@/lib/supabase/queries/pageContent";
 import { fetchTmdbMovie } from "@/lib/tmdb";
 import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal/Reveal";
@@ -13,6 +14,7 @@ export default async function FilmsPage({
 }) {
   const { sort } = await searchParams;
   const supabase = await createClient();
+  const description = await getPageDescription(supabase, "films");
   const base = supabase.from("movies").select("*");
   const ordered =
     sort === "rating"
@@ -42,8 +44,8 @@ export default async function FilmsPage({
             <h1 className="font-display text-[clamp(4rem,10vw,9rem)] leading-[0.85]">
               FILMS
             </h1>
-            <p className="text-muted-foreground max-w-md mt-6">
-              A slow diary of cinema — rating, one-liners, and what I was thinking at the time.
+            <p className="text-muted-foreground max-w-md mt-6 whitespace-pre-line">
+              {description}
             </p>
           </Reveal>
         </div>

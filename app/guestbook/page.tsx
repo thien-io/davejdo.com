@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { getPageDescription } from "@/lib/supabase/queries/pageContent";
 import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal/Reveal";
 import { GuestbookForm } from "./GuestbookForm";
@@ -19,6 +20,7 @@ export default async function GuestbookPage({
   const to = from + PAGE_SIZE - 1;
 
   const supabase = await createClient();
+  const description = await getPageDescription(supabase, "guestbook");
   const { data, count } = await supabase
     .from("guestbook_entries")
     .select("id, name, message, created_at", { count: "exact" })
@@ -41,8 +43,8 @@ export default async function GuestbookPage({
             <h1 className="font-display text-[clamp(4rem,10vw,9rem)] leading-[0.85]">
               GUESTBOOK
             </h1>
-            <p className="text-muted-foreground max-w-md mt-6">
-              Leave a note — I read every one.
+            <p className="text-muted-foreground max-w-md mt-6 whitespace-pre-line">
+              {description}
             </p>
           </Reveal>
         </div>

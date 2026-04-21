@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { getPageDescription } from "@/lib/supabase/queries/pageContent";
 import { WorkGrid } from "./WorkGrid";
 import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal/Reveal";
@@ -7,6 +8,7 @@ export const metadata = { title: "Work · davejdo" };
 
 export default async function WorkPage() {
   const supabase = await createClient();
+  const description = await getPageDescription(supabase, "work");
   const { data: projects } = await supabase
     .from("projects")
     .select(
@@ -33,8 +35,8 @@ export default async function WorkPage() {
             <h1 className="font-display text-[clamp(4rem,10vw,9rem)] leading-[0.85]">
               WORK
             </h1>
-            <p className="text-muted-foreground max-w-md mt-6">
-              Selected projects across print, editorial, and social media. Click any tile to see it in full.
+            <p className="text-muted-foreground max-w-md mt-6 whitespace-pre-line">
+              {description}
             </p>
           </Reveal>
         </div>

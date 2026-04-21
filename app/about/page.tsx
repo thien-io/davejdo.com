@@ -1,10 +1,19 @@
 import Image from "next/image";
+import { createClient } from "@/lib/supabase/server";
+import { getPageDescription } from "@/lib/supabase/queries/pageContent";
 import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal/Reveal";
 
 export const metadata = { title: "About · davejdo" };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const supabase = await createClient();
+  const description = await getPageDescription(supabase, "about");
+  const paragraphs = description
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
   return (
     <>
       <section className="px-6 md:px-12 pt-24 pb-24">
@@ -32,15 +41,11 @@ export default function AboutPage() {
             </Reveal>
             <Reveal y={30} delay={0.1}>
               <div className="space-y-6 text-lg leading-relaxed">
-                <p>
-                  I&rsquo;m Dave J Do — a designer working out of Connecticut, focused
-                  on print and social-media design. This site is a running notebook of
-                  what I make, what I see, and what I&rsquo;m listening to.
-                </p>
-                <p className="text-muted-foreground">
-                  I care about craft over novelty, typography over graphics, and
-                  showing the work more than talking about it.
-                </p>
+                {paragraphs.map((text, i) => (
+                  <p key={i} className={i === 0 ? "" : "text-muted-foreground"}>
+                    {text}
+                  </p>
+                ))}
               </div>
             </Reveal>
           </div>

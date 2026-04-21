@@ -288,6 +288,24 @@ export type Database = {
         }
         Relationships: []
       }
+      page_content: {
+        Row: {
+          slug: string
+          description: string
+          updated_at: string
+        }
+        Insert: {
+          slug: string
+          description?: string
+          updated_at?: string
+        }
+        Update: {
+          slug?: string
+          description?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       site_settings: {
         Row: {
           id: string

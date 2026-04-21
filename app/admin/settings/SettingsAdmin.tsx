@@ -56,7 +56,7 @@ export function SettingsAdmin({
   const imageMedia = media.filter((m) => m.kind === "image");
 
   return (
-    <div className="max-w-5xl">
+    <div>
       <header className="mb-8">
         <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-neutral-500">
           Manage
@@ -64,7 +64,7 @@ export function SettingsAdmin({
         <h1 className="font-display text-5xl">SETTINGS</h1>
       </header>
 
-      <section className="mb-12">
+      <section className="mb-4">
         <div className="font-mono text-[10px] tracking-[0.2em] uppercase text-neutral-500 mb-3">
           Hero image
         </div>
