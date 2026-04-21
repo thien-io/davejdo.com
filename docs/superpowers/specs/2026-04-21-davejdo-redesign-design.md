@@ -108,6 +108,29 @@ supabase/
 Seven tables. All with `created_at timestamptz default now()` and (where applicable) `updated_at timestamptz default now()` maintained by a trigger.
 
 ```sql
+-- media declared first — referenced by projects.cover_media_id and photos.media_id.
+-- storage_path is nullable: upload flow inserts a media row, obtains a signed URL,
+-- then finalizes the row with the path. The CHECK enforces kind/URL mutual
+-- exclusion only; unfinalized rows are swept nightly (see §10).
+create table media (
+  id                uuid primary key default gen_random_uuid(),
+  kind              text check (kind in ('image','video','external_video')) not null,
+  storage_path      text,
+  external_url      text,
+  width             int,
+  height            int,
+  blurhash          text,
+  alt               text,
+  duration_seconds  int,
+  owner_resource    text check (owner_resource in ('project','photo')),
+  owner_id          uuid,
+  created_at        timestamptz default now(),
+  check (
+    (kind in ('image','video') and external_url is null)
+    or (kind = 'external_video' and external_url is not null and storage_path is null)
+  )
+);
+
 -- projects (portfolio)
 create table projects (
   id            uuid primary key default gen_random_uuid(),
@@ -145,26 +168,6 @@ create table movies (
   position      int default 0,
   created_at    timestamptz default now(),
   updated_at    timestamptz default now()
-);
-
--- media (unified images + videos)
-create table media (
-  id                uuid primary key default gen_random_uuid(),
-  kind              text check (kind in ('image','video','external_video')) not null,
-  storage_path      text,
-  external_url      text,
-  width             int,
-  height            int,
-  blurhash          text,
-  alt               text,
-  duration_seconds  int,
-  owner_resource    text check (owner_resource in ('project','photo')),
-  owner_id          uuid,
-  created_at        timestamptz default now(),
-  check (
-    (kind in ('image','video') and storage_path is not null and external_url is null)
-    or (kind = 'external_video' and external_url is not null and storage_path is null)
-  )
 );
 
 -- tags + M:N
