@@ -288,6 +288,32 @@ export type Database = {
         }
         Relationships: []
       }
+      site_settings: {
+        Row: {
+          id: string
+          hero_media_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          hero_media_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          hero_media_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "site_settings_hero_media_id_fkey"
+            columns: ["hero_media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

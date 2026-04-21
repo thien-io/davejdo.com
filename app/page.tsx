@@ -3,7 +3,10 @@ import { ArrowUpRight } from "lucide-react";
 import { HeroName } from "@/components/reveal/HeroName";
 import { Reveal } from "@/components/reveal/Reveal";
 import { ParallaxLayer } from "@/components/reveal/ParallaxLayer";
+import { MediaImage } from "@/components/media/MediaImage";
 import { Footer } from "@/components/footer";
+import { createClient } from "@/lib/supabase/server";
+import { getSiteSettings } from "@/lib/supabase/queries/settings";
 
 const featured = [
   {
@@ -32,18 +35,46 @@ const featured = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const supabase = await createClient();
+  const settings = await getSiteSettings(supabase);
+  const heroImage =
+    settings.hero_media?.storage_path || settings.hero_media?.external_url
+      ? settings.hero_media
+      : null;
+
   return (
     <>
       <section className="relative min-h-[calc(100vh-3.5rem)] flex items-end px-6 md:px-12 pt-20 pb-16 overflow-hidden">
-        <ParallaxLayer
-          offset={30}
-          className="absolute inset-0 pointer-events-none select-none flex items-end justify-end pr-0"
-        >
-          <span className="font-display text-[28vw] leading-[0.8] text-foreground/[0.03] whitespace-nowrap translate-y-10">
-            DAVEJDO
-          </span>
-        </ParallaxLayer>
+        {heroImage ? (
+          <>
+            <ParallaxLayer offset={20} className="absolute inset-0 pointer-events-none">
+              <MediaImage
+                media={{
+                  storage_path: heroImage.storage_path,
+                  external_url: heroImage.external_url,
+                  blurhash: heroImage.blurhash,
+                  alt: heroImage.alt,
+                  width: heroImage.width,
+                  height: heroImage.height,
+                }}
+                sizes="100vw"
+                priority
+                className="w-full h-[115%] object-cover"
+              />
+            </ParallaxLayer>
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-background via-background/70 to-background/40" />
+          </>
+        ) : (
+          <ParallaxLayer
+            offset={30}
+            className="absolute inset-0 pointer-events-none select-none flex items-end justify-end pr-0"
+          >
+            <span className="font-display text-[28vw] leading-[0.8] text-foreground/[0.03] whitespace-nowrap translate-y-10">
+              DAVEJDO
+            </span>
+          </ParallaxLayer>
+        )}
 
         <div className="relative z-10 w-full grid grid-cols-1 md:grid-cols-[1fr,auto] gap-10 items-end">
           <div>
@@ -99,9 +130,6 @@ export default function HomePage() {
           </Reveal>
         </div>
 
-        <div className="absolute bottom-6 right-6 md:right-12 font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground [writing-mode:vertical-rl] rotate-180">
-          SCROLL ↓
-        </div>
       </section>
 
       <section className="px-6 md:px-12 py-24 md:py-32">
