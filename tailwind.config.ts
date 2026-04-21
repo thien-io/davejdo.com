@@ -40,11 +40,11 @@ const config: Config = {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         brand: {
-          white: "#ffffff",
-          dark: "#23272a",
-          darker: "#2c2f33",
-          muted: "#D4AF37",
-          gold: "#D4AF37",
+          black: "#000000",
+          offblack: "#0a0a0a",
+          paper: "#fafaf8",
+          muted: "#888888",
+          gold: "#d4b97c",
         },
       },
       fontFamily: {
