@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Toaster } from "sonner";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Sidebar } from "@/components/sidebar";
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased grain-overlay">
+        <Toaster position="bottom-right" richColors closeButton theme="dark" />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
