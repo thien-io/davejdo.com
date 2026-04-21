@@ -35,4 +35,14 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts.superpowers/
+next-env.d.ts
+
+# superpowers brainstorm sessions
+.superpowers/
+
+# Supabase
+supabase/.temp/
+supabase/.branches/
+
+# Package manager — we use npm
+pnpm-lock.yaml
