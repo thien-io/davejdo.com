@@ -75,20 +75,26 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className='flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-8 border-t border-border'>
-          <div className='flex items-baseline gap-0'>
-            <span className='font-display text-2xl text-foreground'>DAVEJ</span>
-            <span className='font-display text-2xl text-brand-gold'>DO</span>
-          </div>
           <div className='flex items-center gap-4'>
+            <div className='flex items-baseline gap-0'>
+              <span className='font-display text-2xl text-foreground'>DAVEJ</span>
+              <span className='font-display text-2xl text-brand-gold'>DO</span>
+            </div>
             <p className='text-xs font-mono text-muted-foreground'>
-              © {new Date().getFullYear()} davejdo.com — Built by Thien
+              © {new Date().getFullYear()} davejdo.com
             </p>
-            <span className='flex items-center gap-2' aria-hidden='true'>
-              {BAUHAUS_SHAPES.map((kind) => (
-                <BauhausIcon key={kind} kind={kind} size={10} />
-              ))}
-            </span>
           </div>
+          <a
+            href='https://thientran.io'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity'
+            aria-label='thientran.io'
+          >
+            {BAUHAUS_SHAPES.map((kind) => (
+              <BauhausIcon key={kind} kind={kind} size={10} />
+            ))}
+          </a>
         </div>
       </div>
     </footer>
