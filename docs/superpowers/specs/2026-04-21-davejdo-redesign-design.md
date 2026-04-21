@@ -14,9 +14,10 @@ Turn the current `davejdo.com` into Dave J Do's personal portfolio and journal:
 - A Supabase-backed content layer so Dave can self-manage portfolio projects, photo-journal entries (the "picturebook"), and movies — without touching code.
 - A unified admin panel gated by a single admin account (email + password), reachable at `/admin`.
 - Existing Spotify Top-100 and Now-Playing integrations preserved, with the now-playing surface extended into a persistent sidebar/drawer ticker.
+- A public guestbook page (no login required) with anti-spam and admin-moderated deletes.
 - Designer-first UX: asymmetric hero, editorial type scale, cursor affordances, lightbox-driven galleries.
 
-**Non-goals:** multi-user auth, public comments, blog/writing surface, subscription/commerce, analytics beyond Vercel defaults, advanced CMS features (localization, scheduled publishing, drafts).
+**Non-goals:** multi-user auth, blog/writing surface, subscription/commerce, analytics beyond Vercel defaults, advanced CMS features (localization, scheduled publishing, drafts).
 
 ## 2. Users & roles
 
@@ -34,8 +35,9 @@ Ships as a single spec and plan covering:
 3. Auth + middleware + admin layout.
 4. Admin CRUD for projects, photos, movies, tags.
 5. Unified media-upload pipeline (images + videos + external links).
-6. Content migration from the current hardcoded site.
-7. Tennis MDX cleanup and `/about` rewrite.
+6. Public guestbook (no login, anti-spam, admin-moderated deletes).
+7. Content migration from the current hardcoded site.
+8. Tennis MDX cleanup and `/about` rewrite.
 
 ## 4. Architecture
 
@@ -74,6 +76,7 @@ app/
       films/page.tsx
       music/page.tsx
     about/page.tsx
+    guestbook/page.tsx
   admin/
     layout.tsx                   # auth gate
     page.tsx                     # index / overview
@@ -83,6 +86,7 @@ app/
     photos/page.tsx
     movies/page.tsx
     tags/page.tsx
+    guestbook/page.tsx
   api/
     spotify/now-playing/route.ts # unchanged
     spotify/top-tracks/route.ts  # unchanged
@@ -96,7 +100,7 @@ components/
 lib/supabase/
   server.ts, client.ts, middleware.ts
   types.ts                       # generated via `supabase gen types`
-  queries/projects.ts, photos.ts, movies.ts, tags.ts, media.ts
+  queries/projects.ts, photos.ts, movies.ts, tags.ts, media.ts, guestbook.ts
 lib/tmdb.ts                      # existing, kept
 supabase/
   migrations/*.sql               # schema + RLS
@@ -189,9 +193,25 @@ create table project_media (
   position   int default 0,
   primary key (project_id, media_id)
 );
+
+-- guestbook entries (public, no login)
+-- Name and message are length-limited. ip_hash is used for rate-limiting
+-- only and is never returned to the client.
+create table guestbook_entries (
+  id         uuid primary key default gen_random_uuid(),
+  name       text not null check (length(trim(name)) between 1 and 40),
+  message    text not null check (length(trim(message)) between 1 and 280),
+  ip_hash    text,
+  created_at timestamptz default now()
+);
+
+create index guestbook_entries_created_at_idx
+  on guestbook_entries (created_at desc);
 ```
 
-### RLS policies (applied to every table above)
+### RLS policies
+
+**Default policy** (applied to `projects`, `photos`, `movies`, `media`, `tags`, `photo_tags`, `project_media`):
 
 ```sql
 alter table <table> enable row level security;
@@ -203,6 +223,27 @@ create policy "admin write" on <table>
   for all using (auth.jwt() ->> 'email' = 'davejdo6@gmail.com')
   with check (auth.jwt() ->> 'email' = 'davejdo6@gmail.com');
 ```
+
+**Guestbook policy** (more permissive — unauthenticated writes allowed):
+
+```sql
+alter table guestbook_entries enable row level security;
+
+-- public read, but ip_hash is stripped via a view/select column list
+create policy "public read" on guestbook_entries
+  for select using (true);
+
+-- anyone (anon or authed) can insert a new entry.
+-- Server action enforces honeypot, rate-limit, length trimming, and sets ip_hash.
+create policy "public insert" on guestbook_entries
+  for insert with check (true);
+
+-- only Dave can delete. No updates allowed — posts are immutable.
+create policy "admin delete" on guestbook_entries
+  for delete using (auth.jwt() ->> 'email' = 'davejdo6@gmail.com');
+```
+
+Public queries SELECT only `id, name, message, created_at` — `ip_hash` is never exposed to clients.
 
 ### Storage buckets
 
@@ -263,6 +304,17 @@ Two buckets: `portfolio`, `photos`.
 - Structurally unchanged from current: Now-Playing card at top, two columns of 50 top albums (current `2×50` layout).
 - Restyled: new type scale, new color tokens, new reveal animation. Vinyl-spin animation (`.vinyl-spinning`) kept for the currently-playing album.
 
+### `/guestbook` — Public guestbook
+
+- Single-page feed. Top: editorial heading + short "leave a note" prompt.
+- Form: `name` input (max 40), `message` textarea (max 280), submit button. Inline live counter. Submit is disabled when invalid.
+- Hidden honeypot field (`<input name="website" tabindex="-1" class="sr-only">`) — any submission with it filled is silently dropped.
+- Entries list below the form, newest first, paginated (50 per page).
+- Each entry: name (display font, gold accent), message (body copy), relative timestamp mono ("3 days ago"). Small grain texture per card.
+- **Rate limit:** one successful submission per IP-hash per 60 seconds, enforced in the server action. A second submission inside the window returns a polite mono "slow down, try again in Xs" message — the row is never inserted.
+- **Anti-spam layers:** honeypot + rate-limit + length checks. No URLs in messages are rejected by default, but links are rendered as plain text (no auto-linking), which removes most link-spam incentive.
+- **Reduced motion:** submit success does a subtle fade-in of the new entry; with reduced motion it appears instantly.
+
 ### `/about` — Clean slate
 
 Single long-scroll page:
@@ -289,7 +341,7 @@ No inline navigation links in the top bar — all nav lives in the drawer. This 
 
 Slides in from the left, full height, ~320px wide, dark with heavy grain.
 - Header: wordmark.
-- Section list: Home / Work / Picturebook / Films / Music / About.
+- Section list: Home / Work / Picturebook / Films / Music / About / Guestbook.
 - Now-Playing ticker (auto-refreshing, gold accent when playing, subtle greyed state when not).
 - Socials row: IG / X / LinkedIn / Discord / email.
 - Small `admin` link at the bottom — visible to everyone, auth gate is on the page.
@@ -303,7 +355,7 @@ Top bar collapses to wordmark + `MENU`. Drawer behavior is identical; full width
 
 ### Shell
 
-- Route: `/admin`. Rail-on-left layout: vertical nav with four sections (Portfolio, Photos, Movies, Tags). Top-right: Dave's email + logout.
+- Route: `/admin`. Rail-on-left layout: vertical nav with five sections (Portfolio, Photos, Movies, Tags, Guestbook). Top-right: Dave's email + logout.
 - Dark theme only in admin, regardless of site toggle — reduces eye fatigue for editing sessions and avoids having to design two admin palettes.
 - Styled to match the site (grain, mono microtext, gold accents) but tighter (12px base, denser tables).
 
@@ -338,6 +390,13 @@ Minimal centered card: email, password, submit. Errors inline. Success redirects
 
 - Flat list: tag name, photo count, rename, delete, merge-into.
 - Rename updates `tags.name` + regenerates `slug`. Merge re-points `photo_tags.tag_id` to the target and deletes the source. Delete cascades via `photo_tags` FK.
+
+### `/admin/guestbook`
+
+- Table of entries: name, message preview, relative timestamp, `ip_hash` (short prefix only, for spotting floods), delete button.
+- Filter: search by name or message substring; quick filter "last 24h".
+- Bulk select + bulk delete for cleanup runs.
+- No edit — entries are immutable. If something needs changing, Dave deletes and asks the poster to resubmit.
 
 ### Patterns
 
