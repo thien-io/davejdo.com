@@ -2,6 +2,15 @@
 
 import { motion } from "framer-motion";
 import { Mail, Twitter, Linkedin, MessageCircle, DollarSign, Instagram } from "lucide-react";
+import { BauhausIcon, type BauhausIconKind } from "@/components/bauhaus-icon";
+
+const BAUHAUS_SHAPES: BauhausIconKind[] = [
+  "redTriangle",
+  "blueSquare",
+  "yellowCircle",
+  "greenSquare",
+  "purpleCircle",
+];
 
 const contacts = [
   { label: "Email", href: "mailto:davejdo6@gmail.com", icon: Mail, handle: "davejdo6@gmail.com" },
@@ -70,9 +79,16 @@ export function Footer() {
             <span className='font-display text-2xl text-foreground'>DAVEJ</span>
             <span className='font-display text-2xl text-brand-gold'>DO</span>
           </div>
-          <p className='text-xs font-mono text-muted-foreground'>
-            © {new Date().getFullYear()} davejdo.com — Built by Thien
-          </p>
+          <div className='flex items-center gap-4'>
+            <p className='text-xs font-mono text-muted-foreground'>
+              © {new Date().getFullYear()} davejdo.com — Built by Thien
+            </p>
+            <span className='flex items-center gap-2' aria-hidden='true'>
+              {BAUHAUS_SHAPES.map((kind) => (
+                <BauhausIcon key={kind} kind={kind} size={10} />
+              ))}
+            </span>
+          </div>
         </div>
       </div>
     </footer>
