@@ -310,22 +310,32 @@ export type Database = {
         Row: {
           id: string
           hero_media_id: string | null
+          profile_media_id: string | null
           updated_at: string
         }
         Insert: {
           id?: string
           hero_media_id?: string | null
+          profile_media_id?: string | null
           updated_at?: string
         }
         Update: {
           id?: string
           hero_media_id?: string | null
+          profile_media_id?: string | null
           updated_at?: string
         }
         Relationships: [
           {
             foreignKeyName: "site_settings_hero_media_id_fkey"
             columns: ["hero_media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "site_settings_profile_media_id_fkey"
+            columns: ["profile_media_id"]
             isOneToOne: false
             referencedRelation: "media"
             referencedColumns: ["id"]

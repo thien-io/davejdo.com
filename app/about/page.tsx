@@ -1,18 +1,27 @@
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import { getPageDescription } from "@/lib/supabase/queries/pageContent";
+import { getSiteSettings } from "@/lib/supabase/queries/settings";
 import { Footer } from "@/components/footer";
+import { MediaImage } from "@/components/media/MediaImage";
 import { Reveal } from "@/components/reveal/Reveal";
 
 export const metadata = { title: "About · davejdo" };
 
 export default async function AboutPage() {
   const supabase = await createClient();
-  const description = await getPageDescription(supabase, "about");
+  const [description, settings] = await Promise.all([
+    getPageDescription(supabase, "about"),
+    getSiteSettings(supabase),
+  ]);
   const paragraphs = description
     .split(/\n\s*\n/)
     .map((p) => p.trim())
     .filter(Boolean);
+  const profile =
+    settings.profile_media?.storage_path || settings.profile_media?.external_url
+      ? settings.profile_media
+      : null;
 
   return (
     <>
@@ -30,13 +39,28 @@ export default async function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-[auto,1fr] gap-8 items-start">
             <Reveal y={30}>
               <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border border-border bg-secondary">
-                <Image
-                  src="/profile.png"
-                  alt="Dave J Do"
-                  width={160}
-                  height={160}
-                  className="w-full h-full object-cover"
-                />
+                {profile ? (
+                  <MediaImage
+                    media={{
+                      storage_path: profile.storage_path,
+                      external_url: profile.external_url,
+                      blurhash: profile.blurhash,
+                      alt: profile.alt ?? "Dave J Do",
+                      width: profile.width,
+                      height: profile.height,
+                    }}
+                    sizes="160px"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <Image
+                    src="/profile.png"
+                    alt="Dave J Do"
+                    width={160}
+                    height={160}
+                    className="w-full h-full object-cover"
+                  />
+                )}
               </div>
             </Reveal>
             <Reveal y={30} delay={0.1}>

@@ -31,32 +31,28 @@ export function NowPlayingTicker() {
     };
   }, []);
 
-  if (!data) {
-    return <div className="h-10 rounded bg-secondary/50 animate-pulse" />;
-  }
-
-  if (!data.isPlaying || !data.title) {
-    return (
-      <div className="flex items-center gap-3 text-xs text-muted-foreground font-mono">
-        <span className="w-2 h-2 rounded-full bg-muted-foreground/50" />
-        Not playing
-      </div>
-    );
+  if (!data || !data.isPlaying || !data.title) {
+    return null;
   }
 
   return (
-    <div className="flex items-center gap-3">
-      {data.albumImageUrl && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={data.albumImageUrl}
-          alt=""
-          className="w-10 h-10 rounded animate-[spin_8s_linear_infinite]"
-        />
-      )}
-      <div className="min-w-0">
-        <div className="text-sm truncate">{data.title}</div>
-        <div className="text-xs text-muted-foreground truncate">{data.artist}</div>
+    <div className="pt-8 mt-8 border-t border-border">
+      <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-3 px-3">
+        Now Playing
+      </div>
+      <div className="px-3 flex items-center gap-3">
+        {data.albumImageUrl && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={data.albumImageUrl}
+            alt=""
+            className="w-10 h-10 rounded animate-[spin_8s_linear_infinite]"
+          />
+        )}
+        <div className="min-w-0">
+          <div className="text-sm truncate">{data.title}</div>
+          <div className="text-xs text-muted-foreground truncate">{data.artist}</div>
+        </div>
       </div>
     </div>
   );

@@ -7,11 +7,11 @@ import { NowPlayingTicker } from "./NowPlayingTicker";
 
 const items = [
   { label: "Home",        href: "/" },
+  { label: "About",       href: "/about" },
   { label: "Work",        href: "/work" },
   { label: "Picturebook", href: "/life/picturebook" },
   { label: "Films",       href: "/life/films" },
   { label: "Music",       href: "/life/music" },
-  { label: "About",       href: "/about" },
   { label: "Guestbook",   href: "/guestbook" },
 ];
 
@@ -69,14 +69,7 @@ export function Drawer({
                   {item.label.toUpperCase()}
                 </Link>
               ))}
-              <div className="pt-8 mt-8 border-t border-border">
-                <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-3 px-3">
-                  Now Playing
-                </div>
-                <div className="px-3">
-                  <NowPlayingTicker />
-                </div>
-              </div>
+              <NowPlayingTicker />
             </nav>
             <div className="px-6 py-6 border-t border-border flex items-center justify-between">
               <div className="flex items-center gap-4">

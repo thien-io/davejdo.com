@@ -25,6 +25,18 @@ export async function setHeroMediaAction(mediaId: string | null) {
   return { ok: true as const };
 }
 
+export async function setProfileMediaAction(mediaId: string | null) {
+  const { supabase } = await requireAdmin();
+  const { error } = await supabase
+    .from("site_settings")
+    .update({ profile_media_id: mediaId })
+    .eq("id", "singleton");
+  if (error) return { error: error.message };
+  revalidatePath("/about");
+  revalidatePath("/admin/settings");
+  return { ok: true as const };
+}
+
 export async function setPageDescriptionAction(slug: string, description: string) {
   if (!(slug in DESCRIPTION_PATHS)) return { error: "unknown page" };
   if (description.length > 2000) return { error: "description too long" };

@@ -8,7 +8,7 @@ export default async function SettingsAdminPage() {
   const [{ data: settings }, { data: media }, { data: pages }] = await Promise.all([
     supabase
       .from("site_settings")
-      .select("hero_media_id")
+      .select("hero_media_id, profile_media_id")
       .eq("id", "singleton")
       .maybeSingle(),
     supabase
@@ -24,6 +24,7 @@ export default async function SettingsAdminPage() {
     <div className="max-w-5xl space-y-16">
       <SettingsAdmin
         initialHeroId={settings?.hero_media_id ?? null}
+        initialProfileId={settings?.profile_media_id ?? null}
         initialMedia={(media ?? []) as any}
       />
       <PageDescriptionsEditor initial={(pages ?? []) as any} />
