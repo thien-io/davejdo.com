@@ -74,9 +74,9 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className='flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-8 border-t border-border'>
-          <div className='flex items-center gap-4'>
-            <div className='flex items-baseline gap-0'>
+        <div className='flex items-end justify-between gap-4 pt-8 border-t border-border'>
+          <div className='flex flex-col gap-1'>
+            <div className='flex items-baseline gap-0 leading-none'>
               <span className='font-display text-2xl text-foreground'>DAVEJ</span>
               <span className='font-display text-2xl text-brand-gold'>DO</span>
             </div>
@@ -88,7 +88,7 @@ export function Footer() {
             href='https://thientran.io'
             target='_blank'
             rel='noopener noreferrer'
-            className='flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity'
+            className='ml-auto flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity'
             aria-label='thientran.io'
           >
             {BAUHAUS_SHAPES.map((kind) => (
