@@ -1,15 +1,40 @@
 # davejdo.com
 
-Personal website built with Next.js 14, Tailwind CSS, TypeScript, Framer Motion, and GSAP.
+Personal website for Dave J Do — designer and creator in Connecticut.
 
 ## Stack
 
-- **Framework**: Next.js 14 (App Router)
+- **Framework**: Next.js 16 (App Router)
 - **Styling**: Tailwind CSS + CSS Variables
 - **Components**: shadcn/ui + Radix UI
 - **Animation**: Framer Motion + GSAP (ScrollTrigger)
 - **Theme**: Dark/Light via next-themes
+- **Backend**: Supabase (Postgres + Auth + Storage)
 - **APIs**: Spotify Web API, TMDB API
+- **Tests**: Vitest + React Testing Library
+
+## First-time setup (Supabase)
+
+1. **Create the Supabase project** at supabase.com. Name it `davejdo.com`.
+2. **Create the admin user**: Authentication → Users → Add user → email `davejdo6@gmail.com`, set a strong password, check **Auto Confirm User**.
+3. **Copy the project ref, anon key, and service_role key** into `.env.local`:
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=https://<ref>.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon>
+   SUPABASE_SERVICE_ROLE_KEY=<service_role>
+   ```
+4. **Link the CLI** (from repo root):
+   ```bash
+   supabase link --project-ref <ref>
+   ```
+5. **Push migrations**:
+   ```bash
+   supabase db push
+   ```
+6. **Generate types**:
+   ```bash
+   npm run db:types
+   ```
 
 ## Color Palette
 
