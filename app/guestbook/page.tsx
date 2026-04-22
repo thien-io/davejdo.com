@@ -37,9 +37,6 @@ export default async function GuestbookPage({
       <section className="px-6 md:px-12 pt-20 pb-10">
         <div className="max-w-2xl mx-auto">
           <Reveal>
-            <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-3">
-              07 — GUESTBOOK
-            </div>
             <h1 className="font-display text-[clamp(4rem,10vw,9rem)] leading-[0.85]">
               GUESTBOOK
             </h1>

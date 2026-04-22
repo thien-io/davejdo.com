@@ -40,6 +40,10 @@ export default async function PicturebookPage({
     .select("slug, name, photo_tags(count)")
     .order("name");
 
+  const { count: totalPhotos } = await supabase
+    .from("photos")
+    .select("id", { count: "exact", head: true });
+
   const photos = (photosRaw ?? []).map((p: any) => ({
     ...p,
     tags: (p.tags ?? []).map((t: any) => t.tag),
@@ -55,9 +59,6 @@ export default async function PicturebookPage({
       <section className="px-6 md:px-12 pt-20 pb-12">
         <div className="max-w-6xl mx-auto">
           <Reveal>
-            <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-3">
-              03 — PICTUREBOOK
-            </div>
             <h1 className="font-display text-[clamp(4rem,10vw,9rem)] leading-[0.85]">
               PICTUREBOOK
             </h1>
@@ -71,6 +72,7 @@ export default async function PicturebookPage({
       <PicturebookGrid
         photos={photos}
         tags={tags}
+        totalPhotos={totalPhotos ?? 0}
         activeTag={tag ?? null}
         page={pageNum}
       />

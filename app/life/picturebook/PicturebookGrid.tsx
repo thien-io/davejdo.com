@@ -10,11 +10,13 @@ type Tag = { slug: string; name: string; count: number };
 export function PicturebookGrid({
   photos,
   tags,
+  totalPhotos,
   activeTag,
   page,
 }: {
   photos: any[];
   tags: Tag[];
+  totalPhotos: number;
   activeTag: string | null;
   page: number;
 }) {
@@ -36,7 +38,7 @@ export function PicturebookGrid({
         <div className="sticky top-14 z-30 bg-background/85 backdrop-blur py-3 -mx-6 md:-mx-12 px-6 md:px-12 mb-6 border-b border-border">
           <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
             <Pill active={!activeTag} href="/life/picturebook">
-              All ({tags.reduce((a, t) => a + t.count, 0)})
+              All ({totalPhotos})
             </Pill>
             {tags
               .filter((t) => t.count > 0)

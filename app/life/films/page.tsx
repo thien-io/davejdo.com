@@ -38,9 +38,6 @@ export default async function FilmsPage({
       <section className="px-6 md:px-12 pt-20 pb-10">
         <div className="max-w-6xl mx-auto">
           <Reveal>
-            <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-3">
-              04 — FILMS
-            </div>
             <h1 className="font-display text-[clamp(4rem,10vw,9rem)] leading-[0.85]">
               FILMS
             </h1>

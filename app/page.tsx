@@ -88,9 +88,6 @@ export default async function HomePage() {
                 Available for work
               </span>
             </div>
-            <div className="font-mono text-[10px] tracking-[0.22em] text-muted-foreground uppercase mb-3">
-              01 — HOME
-            </div>
             <HeroName className="font-display text-[clamp(4rem,10vw,9rem)] tracking-[-0.02em] -mb-3">
               DAVE
             </HeroName>
@@ -139,9 +136,6 @@ export default async function HomePage() {
       <section className="px-6 md:px-12 py-24 md:py-32">
         <div className="max-w-6xl mx-auto">
           <div className="mb-14">
-            <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-3">
-              02 — EXPLORE
-            </div>
             <h2 className="font-display text-[clamp(3rem,7vw,6rem)] leading-[0.9] tracking-tight">
               THE WORLD
               <br />

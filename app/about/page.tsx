@@ -28,9 +28,6 @@ export default async function AboutPage() {
       <section className="px-6 md:px-12 pt-24 pb-24">
         <div className="max-w-3xl mx-auto">
           <Reveal>
-            <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-4">
-              06 — ABOUT
-            </div>
             <h1 className="font-display text-[clamp(4rem,10vw,9rem)] leading-[0.85] mb-12">
               ABOUT
             </h1>
