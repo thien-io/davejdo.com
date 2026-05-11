@@ -66,7 +66,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className='flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-8 border-t border-border'>
+        <div className='flex flex-row items-center justify-between gap-4 pt-8 border-t border-border'>
           <div className='flex items-center gap-4'>
             <div className='flex items-baseline gap-0'>
               <span className='font-display text-2xl text-foreground'>DAVEJ</span>
