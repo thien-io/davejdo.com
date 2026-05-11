@@ -9,11 +9,8 @@ export const metadata: Metadata = {
   title: "davejdo",
   description: "Personal website of Dave J Do — designer and creator in Connecticut",
   icons: {
-    icon: [
-      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
-    ],
-    apple: "/apple-touch-icon.png",
+    icon: "/favicon-davidjdo.png",
+    apple: "/favicon-davidjdo.png",
   },
 };
 
