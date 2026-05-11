@@ -80,10 +80,9 @@ export function Footer() {
             href='https://hellothien.com'
             target='_blank'
             rel='noopener noreferrer'
-            className='flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors'
-            aria-label='Built by Thien — hellothien.com'
+            className='ml-auto text-muted-foreground hover:text-foreground transition-colors'
+            aria-label='hellothien.com'
           >
-            <span className='text-xs font-mono'>Built by</span>
             <HelloThienLogo className='h-4 w-auto' />
           </a>
         </div>
