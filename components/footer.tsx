@@ -77,11 +77,11 @@ export function Footer() {
             </p>
           </div>
           <a
-            href='https://hellothien.com'
+            href='https://thien.so'
             target='_blank'
             rel='noopener noreferrer'
             className='ml-auto text-muted-foreground hover:text-foreground transition-colors'
-            aria-label='hellothien.com'
+            aria-label='thien.so'
           >
             <HelloThienLogo className='h-4 w-auto' />
           </a>
